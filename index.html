@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potnuri Chandra Lakshman Mahesh - AWS Cloud Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: #f8fafc;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+            font-size: 2rem;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-section {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 3rem;
+            font-weight: bold;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 25px;
+            color: #3b82f6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Section styling */
+        .section {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #06b6d4;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Summary */
+        .summary-text {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        /* Skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .skill-category h3 {
+            color: #22d3ee;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #1e40af, #3730a3);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Projects */
+        .project-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            transition: left 0.8s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-title {
+            color: #22d3ee;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-title:hover {
+            color: #06b6d4;
+            transform: translateX(5px);
+        }
+
+        .project-title .github-icon {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .project-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        /* Education */
+        .education-item {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #3b82f6;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateX(5px);
+        }
+
+        .education-degree {
+            font-weight: 600;
+            color: #22d3ee;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-school {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .education-score {
+            color: #3b82f6;
+            font-weight: 500;
+            float: right;
+        }
+
+        /* Certification */
+        .cert-badge {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cert-badge:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(5, 150, 105, 0.4);
+        }
+
+        .cert-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-validity {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .header {
+                padding: 1.5rem 0;
+            }
+            
+            .profile-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .name {
+                font-size: 1.8rem;
+                line-height: 1.2;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .contact-link {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .skill-category {
+                padding: 1rem;
+            }
+            
+            .project-card {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .section {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .name {
+                font-size: 1.5rem;
+            }
+            
+            .title {
+                font-size: 1.1rem;
+            }
+            
+            .contact-link {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .project-card {
+                padding: 1rem;
+            }
+            
+            .project-title {
+                font-size: 1.1rem;
+            }
+            
+            .summary-text {
+                font-size: 1rem;
+            }
+            
+            .education-item {
+                padding: 1rem;
+            }
+            
+            .education-score {
+                float: none;
+                display: block;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <div class="container">
+        <!-- Profile Section -->
+        <header class="header">
+            <div class="profile-section">
+                <div class="profile-avatar">CM</div>
+                <h1 class="name">Potnuri Chandra Lakshman Mahesh</h1>
+                <p class="title">AWS Cloud Engineer & Solutions Architect</p>
+                <div class="contact-links">
+                    <a href="tel:+919573449685" class="contact-link">
+                        <span>📞</span> +91-9573449685
+                    </a>
+                    <a href="mailto:bpotnuri32@gmail.com" class="contact-link">
+                        <span>📧</span> bpotnuri32@gmail.com
+                    </a>
+                    <a href="https://github.com/chandramah" class="contact-link" target="_blank">
+                        <span>🐙</span> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/chandra-lakshman-mahesh-potnuri-a37202200" class="contact-link" target="_blank">
+                        <span>💼</span> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Summary Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span>
+                Professional Summary
+            </h2>
+            <p class="summary-text">
+                Enthusiastic AWS Cloud Engineer with a strong focus on troubleshooting and problem-solving. 
+                Proven ability to automate infrastructure, manage cloud resources efficiently, and streamline 
+                software delivery processes using AWS services. Experienced with CI/CD pipelines, infrastructure 
+                as code, and maintaining a focus on security, reliability, and proactive identification and 
+                resolution of technical issues.
+            </p>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚡</span>
+                Technical Expertise
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>☁️ Cloud Computing</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS Cloud</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🐳 Containerization & Orchestration</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🏗️ Infrastructure Management</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Terraform</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🔄 CI/CD Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">AWS CodePipeline</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>💻 Programming & Systems</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🛠️</span>
+                Featured Projects
+            </h2>
+            
+            <div class="project-card">
+                <a href="https://github.com/chandramah/-Automated-Image-Resizing-and-Transfer-System-Using-AWS-Services" 
+                   target="_blank" class="project-title">
+                    🖼️ Automated Image Resizing and Transfer System
+                    <span class="github-icon">🔗</span>
+                </a>
+                <p class="project-description">
+                    Built an automated system for image processing and management within the AWS ecosystem. 
+                    Streamlined image handling by automatically resizing and transferring images to designated 
+                    storage locations while keeping stakeholders informed through notifications. Orchestrated 
+                    the workflow using AWS Lambda, S3, and SNS services.
+                </p>
+            </div>
+            
+            <div class="project-card">
+                <a href="https://github.com/chandramah/mahi" 
+                   target="_blank" class="project-title">
+                    🧮 Calculator Application with AWS CodePipeline
+                    <span class="github-icon">🔗</span>
+                </a>
+                <p class="project-description">
+                    Developed and deployed a scalable calculator application using AWS CodePipeline. 
+                    Integrated autoscaling and load balancing to ensure high availability. Managed 
+                    complete DevOps lifecycle with AWS CodeCommit for version control, CodeBuild for 
+                    automation, and CodeDeploy for seamless deployment. Configured proactive monitoring 
+                    and alerting through Amazon CloudWatch.
+                </p>
+            </div>
+            
+            <div class="project-card">
+                <h3 class="project-title">🔒 Secure VPC Architecture for Production</h3>
+                <p class="project-description">
+                    Designed and implemented a robust Virtual Private Cloud (VPC) architecture featuring 
+                    public and private subnets distributed across two Availability Zones for maximum 
+                    reliability. Configured NAT gateways in public subnets for secure outbound internet 
+                    connectivity and load balancer nodes for effective traffic distribution in a 
+                    production-ready environment.
+                </p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎓</span>
+                Education
+            </h2>
+            
+            <div class="education-item">
+                <div class="education-degree">Bachelor of Technology - Computer Science and Engineering</div>
+                <div class="education-school">
+                    Sai Spurthi Institute of Technology, B.Gangaram (2019-2023)
+                    <span class="education-score">CGPA: 7.14</span>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-degree">Intermediate Education (MPC)</div>
+                <div class="education-school">
+                    Sri Chaithanya Intermediate College, Jangareddygudem (2017-2019)
+                    <span class="education-score">CGPA: 9.14</span>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-degree">Matriculation (10th Class)</div>
+                <div class="education-school">
+                    Z.P.P (Boys) High School, Jangareddygudem (2016-2017)
+                    <span class="education-score">CGPA: 8.8</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certification Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🏆</span>
+                Professional Certification
+            </h2>
+            
+            <div class="cert-badge">
+                <div class="cert-title">🛡️ AWS Certified Solutions Architect - Associate</div>
+                <div class="cert-validity">Valid: November 2024 - November 2027</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Create floating background animations
+        function createFloatingIcons() {
+            const icons = ['☁️', '⚡', '🚀', '🔧', '💻', '🛠️', '📊', '🔒', '🌐', '⚙️'];
+            const container = document.getElementById('bgAnimation');
+            
+            for (let i = 0; i < 15; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'floating-icon';
+                icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.left = Math.random() * 100 + '%';
+                icon.style.animationDelay = Math.random() * 20 + 's';
+                icon.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(icon);
+            }
+        }
+
+        // Smooth scrolling for internal links
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingIcons();
+            
+            // Add subtle parallax effect
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('.bg-animation');
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            });
+        });
+
+        // Add hover effects for project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 20px 40px rgba(59, 130, 246, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.3)';
+            });
+        });
+    </script>
+</body>
+</html>
